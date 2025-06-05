@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tortomagia u Beaty - Ręcznie robione torty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Dancing+Script:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #f4d1d1;
+            --soft-pink: #f8e8e8;
+            --mint: #e8f5f0;
+            --ivory: #faf9f6;
+            --gold: #d4af37;
+            --dark-gray: #4a4a4a;
+            --light-gray: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--ivory);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--soft-pink) 0%, var(--mint) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23d4af37" opacity="0.3"/><circle cx="80" cy="40" r="3" fill="%23f4d1d1" opacity="0.4"/><circle cx="60" cy="80" r="2" fill="%23e8f5f0" opacity="0.5"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(360deg); }
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--gold), #e6c158);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-gray);
+        }
+
+        .section-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--ivory);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--light-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--ivory);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--soft-pink);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial .author {
+            font-weight: 500;
+            color: var(--gold);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--ivory);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--gold), #e6c158);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        .footer-contact {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-contact span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom decorative elements */
+        .flower-decoration {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .flower-decoration:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .flower-decoration:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .flower-decoration:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation: float 7s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Tortomagia u Beaty</div>
+            <ul class="nav-links">
+                <li><a href="#home">Start</a></li>
+                <li><a href="#about">O mnie</a></li>
+                <li><a href="#services">Usługi</a></li>
+                <li><a href="#gallery">Galeria</a></li>
+                <li><a href="#testimonials">Opinie</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="flower-decoration">🌸</div>
+        <div class="flower-decoration">🌺</div>
+        <div class="flower-decoration">🌻</div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Ręcznie robione torty na każdą słodką okazję</h1>
+                    <p>Torty tworzone z miłością, kwiatami i smakiem. Od urodzin po wesela – spełniamy Twoje słodkie marzenia.</p>
+                    <a href="#contact" class="cta-button">Zamów swój tort</a>
+                </div>
+                <div class="hero-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f4d1d1'/%3E%3Cstop offset='100%25' style='stop-color:%23e8f5f0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23bg)'/%3E%3Ccircle cx='200' cy='150' r='80' fill='%23ffffff' opacity='0.9'/%3E%3Ctext x='200' y='160' font-family='serif' font-size='24' text-anchor='middle' fill='%234a4a4a'%3E🎂%3C/text%3E%3C/svg%3E" alt="Piękny tort z kwiatową dekoracją">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-subtitle">Poznaj mnie</div>
+            <h2 class="section-title">Autorkę słodkości</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cdefs%3E%3ClinearGradient id='portrait' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23faf9f6'/%3E%3Cstop offset='100%25' style='stop-color:%23f8e8e8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='400' fill='url(%23portrait)'/%3E%3Ccircle cx='150' cy='120' r='60' fill='%23f4d1d1' opacity='0.7'/%3E%3Ctext x='150' y='130' font-family='serif' font-size='40' text-anchor='middle'%3E👩‍🍳%3C/text%3E%3Ctext x='150' y='300' font-family='serif' font-size='18' text-anchor='middle' fill='%234a4a4a'%3EBeata%3C/text%3E%3C/svg%3E" alt="Beata - Twórczyni tortów">
+                </div>
+                <div class="about-text">
+                    <h3>Cześć, mam na imię Beata</h3>
+                    <p>Moja pasja do pieczenia zaczęła się w kuchni mojej babci i przerodziła się w miłość do jadalnej sztuki. Każdy tort tworzę z sercem, starannością i najwyższej jakości składników.</p>
+                    <p>Wierzę, że każda słodka chwila zasługuje na wyjątkowy tort. Dlatego każde zamówienie traktuję indywidualnie, dbając o najmniejsze detale i łącząc tradycyjne techniki z nowoczesnymi trendami.</p>
+                    <p>Moje torty to nie tylko słodycz - to edytowalne dzieła sztuki, które tworzą niezapomniane wspomnienia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-subtitle">Moja oferta</div>
+            <h2 class="section-title">Co piekę?</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎂</div>
+                    <h3>Torty urodzinowe na zamówienie</h3>
+                    <p>Personalizowane torty urodzinowe dopasowane do gustu i wieku jubilata. Od bajkowych postaci po eleganckie kompozycje.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💐</div>
+                    <h3>Torty weselne z dekoracjami kwiatowymi</h3>
+                    <p>Romantyczne torty weselne z jadalnymi kwiatami i delikatnymi dekoracjami, które podkreślą wyjątkowość Waszego dnia.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🍰</div>
+                    <h3>Słodkie stoły na imprezy</h3>
+                    <p>Kompleksowe słodkie stoły z różnorodnymi deserami, które zachwycą Waszych gości i będą ozdobą każdej imprezy.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧁</div>
+                    <h3>Mini desery i babeczki</h3>
+                    <p>Delikatne mini desery i eleganckie babeczki idealne na większe wydarzenia i gdy chcesz zaserwować różnorodność smaków.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌸</div>
+                    <h3>Torty z sezonowymi owocami</h3>
+                    <p>Świeże, sezonowe kompozycje z najlepszymi owocami i jadalnymi kwiatami, które łączą smak z pięknem natury.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Torty tematyczne</h3>
+                    <p>Kreatywne torty tematyczne na każdą okazję - od dziecięcych marzeń po eleganckie kompozycje dla dorosłych.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-subtitle">Moje prace</div>
+            <h2 class="section-title">Słodkie portfolio</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='cake1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f8e8e8'/%3E%3Cstop offset='100%25' style='stop-color:%23f4d1d1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23cake1)'/%3E%3Crect x='50' y='150' width='200' height='100' fill='%23ffffff' rx='10'/%3E%3Ctext x='150' y='210' font-size='40' text-anchor='middle'%3E🌹%3C/text%3E%3C/svg%3E" alt="Elegancki tort z różami">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='cake2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23e8f5f0'/%3E%3Cstop offset='100%25' style='stop-color:%23d4af37'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23cake2)'/%3E%3Ccircle cx='150' cy='150' r='80' fill='%23ffffff'/%3E%3Ctext x='150' y='170' font-size='35' text-anchor='middle'%3E🎂✨%3C/text%3E%3C/svg%3E" alt="Tort urodzinowy ze świeczkami">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='cake3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23faf9f6'/%3E%3Cstop offset='100%25' style='stop-color:%23f4d1d1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23cake3)'/%3E%3Crect x='75' y='100' width='150' height='120' fill='%23ffffff' rx='15'/%3E%3Ctext x='150' y='140' font-size='25' text-anchor='middle'%3E🌺🌸%3C/text%3E%3Ctext x='150' y='180' font-size='25' text-anchor='middle'%3E💐🌻%3C/text%3E%3C/svg%3E" alt="Tort weselny z kwiatami">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='cake4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23e8f5f0'/%3E%3Cstop offset='100%25' style='stop-color:%23f8e8e8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23cake4)'/%3E%3Crect x='60' y='120' width='180' height='80' fill='%23ffffff' rx='10'/%3E%3Ctext x='150' y='170' font-size='30' text-anchor='middle'%3E🧁🍰🧁%3C/text%3E%3C/svg%3E" alt="Mini desery i babeczki">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='cake5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23d4af37'/%3E%3Cstop offset='100%25' style='stop-color:%23f4d1d1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23cake5)'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23ffffff'/%3E%3Ctext x='150' y='140' font-size='25' text-anchor='middle'%3E🍓🫐%3C/text%3E%3Ctext x='150' y='170' font-size='25' text-anchor='middle'%3E🥝🍑%3C/text%3E%3C/svg%3E" alt="Tort z owocami">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='cake6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f8e8e8'/%3E%3Cstop offset='100%25' style='stop-color:%23e8f5f0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23cake6)'/%3E%3Crect x='50' y='100' width='200' height='120' fill='%23ffffff' rx='20'/%3E%3Ctext x='150' y='150' font-size='35' text-anchor='middle'%3E🎨✨%3C/text%3E%3Ctext x='150' y='180' font-size='20' text-anchor='middle'%3ETematyczny%3C/text%3E%3C/svg%3E" alt="Tort tematyczny">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-subtitle">Co mówią klienci</div>
+            <h2 class="section-title">Opinie klientów</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p>"Najpiękniejszy tort, jaki widziałam – i jeszcze lepszy w smaku! Beata to prawdziwa artystka."</p>
+                    <div class="author">- Anna K.</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Wyglądał jak dzieło sztuki, smakował jak marzenie. Goście do dziś wspominają nasz tort weselny!"</p>
